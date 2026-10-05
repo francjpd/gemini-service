@@ -1,0 +1,33 @@
+[project]
+name = "gemini-service"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "francjpd", email = "francjpd@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "google-genai>=2.28.0",
+]
+
+[project.scripts]
+gemini-service = "gemini_service:main"
+
+[build-system]
+requires = ["uv_build>=0.11.20,<0.12.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.10",
+]
+
+[tool.pyright]
+# Point Pyright at the uv-managed virtualenv so imports of dev tools
+# (pytest, etc.) resolve. Without this, Pyright falls back to the Python
+# interpreter on PATH, which lacks the project's dependencies.
+venvPath = "."
+venv = ".venv"
